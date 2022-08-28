@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Values.deployment.name}}"
+  labels:
+    app.kubernetes.io/name: "{{ .Values.deployment.name}}"
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/managed-by: helm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: "{{ .Values.deployment.name}}"
+  template:
+    metadata:
+      name: "{{ .Values.deployment.name}}"
+      labels:
+        app.kubernetes.io/name: "{{ .Values.deployment.name}}"
+    spec:
+      containers:
+      - name: "{{ .Values.deployment.name}}"
+        image: "{{ .Values.deployment.image }}:{{ .Values.deployment.tag }}"
+        imagePullPolicy: Never
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
