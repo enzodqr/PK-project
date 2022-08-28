@@ -17,5 +17,9 @@ module.exports = {
         }
 
         return this.deepCopy(envConstants.env.local)
+    },
+
+    getProcessInfo(){
+        return process.env
     }
 };

@@ -1,6 +1,10 @@
-const Server = require("./server");
+const myServer = require("./server");
+const routes = require("./router/routes");
 
-const myServer = new Server();
-myServer.startServer();
+myServer.setConfig()
+myServer.startServer()
+
+const app = myServer.getExpressApp();
 
 
+app.use(routes);
