@@ -3,6 +3,7 @@ version: '3.8'
 services:
   backend:
     image: pkproject:1.0.0
+    container_name: pk-backend
     build:
       context: ./
       target: development
@@ -13,3 +14,12 @@ services:
     volumes:
       - .:/app
     command: npm run dev-env
+  mongo:
+    image: mongo:latest
+    container_name: pk-mongo
+    enviroments: 
+      - MONGO_INIT_DATABASE=pk-db
+      - MONGO_INITDB_ROOT_USERNAME=pk-user
+      - MONGO_INITDB_ROOT_PASSWORD=pk-password
+    ports:
+      - 27017:27017
