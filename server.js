@@ -7,7 +7,6 @@ const bodyParser = require("body-parser");
 const utils = require("./utils/utils");
 
 const envConfig = utils.getEnvConfig();
-const host = envConfig.host;
 const port = envConfig.port;
 const app = express();
 const router = express.Router();
